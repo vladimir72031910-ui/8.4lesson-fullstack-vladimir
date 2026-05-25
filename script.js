@@ -7,29 +7,44 @@ const swiper = new Swiper('.brands', {
     clickable: true,
   },
    breakpoints: {
-    755: {
+    770: {
         enabled: false,
     }
    }
 
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    const button = document.querySelector('.show-hidden');
-    const arrow = document.querySelector('.expand');
-    const textSpan = document.querySelector('.hiddens');
+document.addEventListener('DOMContentLoaded', function () {
 
-button.addEventListener('click', function() {
-    const isHidden = document.querySelector('.hidden-brands').classList.toggle('hidden');
-    if (isHidden) {
-        textSpan.textContent = 'Показать все';
-        arrow.style.transform = 'rotate(0deg)';
+    const buttons = document.querySelectorAll('.show-hidden');
 
-    }  else {
-        textSpan.textContent = 'Скрыть';
-        arrow.style.transform = 'rotate(180deg)';
-    }
-   
-});
+    buttons.forEach(function (button) {
+
+        const arrow = button.querySelector('.expand');
+        const textSpan = button.querySelector('.hiddens');
+
+        button.addEventListener('click', function () {
+
+            const section = button.closest('section');
+
+            const hiddenBlock = section.querySelector('.hidden-brands');
+
+            const isHidden = hiddenBlock.classList.toggle('hidden');
+
+            if (isHidden) {
+
+                textSpan.textContent = 'Показать все';
+                arrow.style.transform = 'rotate(0deg)';
+
+            } else {
+
+                textSpan.textContent = 'Скрыть';
+                arrow.style.transform = 'rotate(180deg)';
+
+            }
+
+        });
+
+    });
 
 });
